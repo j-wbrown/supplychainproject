@@ -49,7 +49,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -2587,9 +2588,44 @@
     "name": "solc",
     "version": "0.6.2+commit.bacdbe57.Emscripten.clang"
   },
-  "networks": {},
+  "networks": {
+    "4": {
+      "events": {
+        "0xddbf200aa634dc3fb81cfd68583dd1040d1c751d335e1d86b631bde3e977fea8": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "account",
+              "type": "address"
+            }
+          ],
+          "name": "DistributorAdded",
+          "type": "event"
+        },
+        "0x126174f6cf49c81cdb4a9214c6b8f037bef55b4ec31e4fc776cea2a1c8a88d59": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "account",
+              "type": "address"
+            }
+          ],
+          "name": "DistributorRemoved",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0x5AB073297F5a732a4Df0E8Dc9cC390415148fE02",
+      "transactionHash": "0x6ad5ffc7b5131bb6d9218f48f6713ab4aa540281f6e54fb0aedeb7cdcea5fc22"
+    }
+  },
   "schemaVersion": "3.2.3",
-  "updatedAt": "2020-08-19T12:54:42.919Z",
+  "updatedAt": "2020-08-19T16:21:44.307Z",
+  "networkType": "ethereum",
   "devdoc": {
     "methods": {}
   },

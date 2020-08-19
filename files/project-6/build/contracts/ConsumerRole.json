@@ -49,7 +49,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -2587,9 +2588,44 @@
     "name": "solc",
     "version": "0.6.2+commit.bacdbe57.Emscripten.clang"
   },
-  "networks": {},
+  "networks": {
+    "4": {
+      "events": {
+        "0x28b26e7a3d20aedbc5f8f2ebf7da671c0491723a2b78f47a097b0e46dee07142": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address payable",
+              "name": "account",
+              "type": "address"
+            }
+          ],
+          "name": "ConsumerAdded",
+          "type": "event"
+        },
+        "0xe3f5ed5f263f1f01764a96edfc7d025f511ec5f7d180e8816908b78bcf74f098": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address payable",
+              "name": "account",
+              "type": "address"
+            }
+          ],
+          "name": "ConsumerRemoved",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0x4Aa8D3a2d39F3D1acb7Fc169cD2cB7Ff29D0146c",
+      "transactionHash": "0x3e0184787e7ae898621613b6944dc1597aea4e41dcdd8d9a7dade443679bd6e1"
+    }
+  },
   "schemaVersion": "3.2.3",
-  "updatedAt": "2020-08-19T12:54:42.913Z",
+  "updatedAt": "2020-08-19T16:21:44.318Z",
+  "networkType": "ethereum",
   "devdoc": {
     "methods": {}
   },
