@@ -1,4 +1,4 @@
-pragma solidity ^0.4.24;
+pragma solidity ^0.6.2;
 
 import '../coffeecore/Ownable.sol';
 import '../coffeeaccesscontrol/DistributorRole.sol';
@@ -158,7 +158,7 @@ contract SupplyChain is Ownable, DistributorRole, ConsumerRole, RetailerRole, Fa
   string  _originFarmLongitude, string  _productNotes) onlyFarmer() public 
   {
     // Add the new item as part of Harvest
-    let newItem = items[_upc];
+    var newItem = items[_upc];
     newItem.sku = sku;
     newItem.upc = _upc;
     newItem.ownerID = owner; 

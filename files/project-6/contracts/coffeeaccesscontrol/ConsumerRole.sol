@@ -1,4 +1,4 @@
-pragma solidity ^0.4.24;
+pragma solidity ^0.6.2;
 
 // Import the library 'Roles'
 import "./Roles.sol";
@@ -48,6 +48,6 @@ contract ConsumerRole {
   // Define an internal function '_removeConsumer' to remove this role, called by 'removeConsumer'
   function _removeConsumer(address account) internal {
      consumers.remove(account);
-     emit ConsumersRemoved(account);
+     emit ConsumerRemoved(account);
   }
 }
