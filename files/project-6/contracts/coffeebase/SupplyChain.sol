@@ -158,18 +158,17 @@ contract SupplyChain is Ownable, DistributorRole, ConsumerRole, RetailerRole, Fa
   string memory   _originFarmLongitude, string memory   _productNotes) onlyFarmer public 
   {
     // Add the new item as part of Harvest
-    SupplyChain.Item storage pointer newItem = items[_upc];
-    newItem.sku = sku;
-    newItem.upc = _upc;
-    newItem.ownerID = owner; 
-    newItem.originFarmerID = _originFarmerID;
-    newItem.originFarmName = _originFarmName;
-    newItem.originFarmInformation = _originFarmInformation;
-    newItem.originFarmLatitude = _originFarmLatitude;
-    newItem.originFarmLongitude = _originFarmLongitude;
-    newItem.productID = _upc + sku;
-    newItem.productNotes = _productNotes;
-    newItem.itemState = State.Harvested;
+    items[_upc].sku = sku;
+    items[_upc].upc = _upc;
+    items[_upc].ownerID = owner; 
+    items[_upc].originFarmerID = _originFarmerID;
+    items[_upc].originFarmName = _originFarmName;
+    items[_upc].originFarmInformation = _originFarmInformation;
+    items[_upc].originFarmLatitude = _originFarmLatitude;
+    items[_upc].originFarmLongitude = _originFarmLongitude;
+    items[_upc].productID = _upc + sku;
+    items[_upc].productNotes = _productNotes;
+    items[_upc].itemState = State.Harvested;
 
     // Increment sku
     sku = sku + 1;
@@ -221,6 +220,7 @@ contract SupplyChain is Ownable, DistributorRole, ConsumerRole, RetailerRole, Fa
     
     // Emit the appropriate event
     items[_upc].itemState = State.ForSale;
+    items[_upc].productPrice = _price;
 
     emit ForSale(_upc);
     
@@ -299,6 +299,7 @@ contract SupplyChain is Ownable, DistributorRole, ConsumerRole, RetailerRole, Fa
     
   }
 
+
   // Define a function 'fetchItemBufferOne' that fetches the data
   function fetchItemBufferOne(uint _upc) public view returns 
   (
@@ -313,20 +314,30 @@ contract SupplyChain is Ownable, DistributorRole, ConsumerRole, RetailerRole, Fa
   ) 
   {
   // Assign values to the 8 parameters
-  
+    itemSKU = items[_upc].sku;
+  itemUPC = items[_upc].upc;
+  ownerID = items[_upc].ownerID;
+  originFarmerID = items[_upc].originFarmerID;
+  originFarmName = items[_upc].originFarmName;
+  originFarmInformation = items[_upc].originFarmInformation;
+  originFarmLatitude = items[_upc].originFarmLatitude;
+  originFarmLongitude = items[_upc].originFarmLongitude;
+
+
   return 
   (
-  itemSKU = items[_upc].sku,
-  itemUPC = items[_upc].upc,
-  ownerID = items[_upc].ownerID,
-  originFarmerID = items[_upc].originFarmerID,
-  originFarmName = items[_upc].originFarmName,
-  originFarmInformation = items[_upc].originFarmInformation,
-  originFarmLatitude = items[_upc].originFarmLatitude,
-  originFarmLongitude = items[_upc].originFarmLongitude
+     itemSKU,
+     itemUPC,
+     ownerID,
+     originFarmerID,
+     originFarmName,
+     originFarmInformation,
+     originFarmLatitude,
+     originFarmLongitude
   );
   }
 
+ 
   // Define a function 'fetchItemBufferTwo' that fetches the data
   function fetchItemBufferTwo(uint _upc) public view returns 
   (
@@ -335,26 +346,34 @@ contract SupplyChain is Ownable, DistributorRole, ConsumerRole, RetailerRole, Fa
   uint    productID,
   string memory   productNotes,
   uint    productPrice,
-  State    itemState,
+  uint    itemState,
   address distributorID,
   address retailerID,
   address consumerID
   ) 
   {
     // Assign values to the 9 parameters
-  
+  itemSKU = items[_upc].sku;
+  itemUPC = items[_upc].upc;
+  productID = items[_upc].productID;
+  productNotes = items[_upc].productNotes;
+  productPrice = items[_upc].productPrice;
+  itemState = uint(items[_upc].itemState);
+  distributorID = items[_upc].distributorID;
+  retailerID = items[_upc].retailerID;
+  consumerID = items[_upc].consumerID;
     
   return 
   (
-  itemSKU = items[_upc].sku,
-  itemUPC = items[_upc].upc,
-  productID = items[_upc].productID,
-  productNotes = items[_upc].productNotes,
-  productPrice = items[_upc].productPrice,
-  itemState = items[_upc].itemState,
-  distributorID = items[_upc].distributorID,
-  retailerID = items[_upc].retailerID,
-  consumerID = items[_upc].consumerID
+  itemSKU,
+  itemUPC,
+  productID,
+  productNotes,
+  productPrice,
+  itemState,
+  distributorID,
+  retailerID,
+  consumerID
   );
   }
 }
