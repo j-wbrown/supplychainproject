@@ -193,7 +193,7 @@ contract SupplyChain is Ownable, DistributorRole, ConsumerRole, RetailerRole, Fa
   }
 
   // Define a function 'packItem' that allows a farmer to mark an item 'Packed'
-  function packItem(uint _upc) processed(upc) onlyFarmer verifyCaller(items[_upc].originFarmerID) public 
+  function packItem(uint _upc) processed(upc) onlyFarmer public 
   // Call modifier to check if upc has passed previous supply chain stage
   
   // Call modifier to verify caller of this function
@@ -210,7 +210,7 @@ contract SupplyChain is Ownable, DistributorRole, ConsumerRole, RetailerRole, Fa
   }
 
   // Define a function 'sellItem' that allows a farmer to mark an item 'ForSale'
-  function sellItem(uint _upc, uint _price) packed(upc) verifyCaller(items[_upc].originFarmerID) public 
+  function sellItem(uint _upc, uint _price) packed(upc) onlyFarmer public 
   // Call modifier to check if upc has passed previous supply chain stage
   
   // Call modifier to verify caller of this function
