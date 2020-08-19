@@ -180,7 +180,7 @@ contract SupplyChain is Ownable, DistributorRole, ConsumerRole, RetailerRole, Fa
   }
 
   // Define a function 'processtItem' that allows a farmer to mark an item 'Processed'
-  function processItem(uint _upc) harvested(upc) onlyFamer() public 
+  function processItem(uint _upc) harvested(upc) onlyFarmer public 
   // Call modifier to check if upc has passed previous supply chain stage
   
   // Call modifier to verify caller of this function
@@ -195,7 +195,7 @@ contract SupplyChain is Ownable, DistributorRole, ConsumerRole, RetailerRole, Fa
   }
 
   // Define a function 'packItem' that allows a farmer to mark an item 'Packed'
-  function packItem(uint _upc) processed(upc) onlyFarmer() verifyCaller(items[_upc].originFarmerID) public 
+  function packItem(uint _upc) processed(upc) onlyFarmer verifyCaller(items[_upc].originFarmerID) public 
   // Call modifier to check if upc has passed previous supply chain stage
   
   // Call modifier to verify caller of this function
@@ -270,7 +270,7 @@ contract SupplyChain is Ownable, DistributorRole, ConsumerRole, RetailerRole, Fa
 
   // Define a function 'receiveItem' that allows the retailer to mark an item 'Received'
   // Use the above modifiers to check if the item is shipped
-  function receiveItem(uint _upc) ship(upc) public 
+  function receiveItem(uint _upc) shipped(upc) public 
     // Call modifier to check if upc has passed previous supply chain stage
     
     // Access Control List enforced by calling Smart Contract / DApp
