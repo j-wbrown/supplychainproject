@@ -178,7 +178,7 @@ contract SupplyChain is Ownable, DistributorRole, ConsumerRole, RetailerRole, Fa
   }
 
   // Define a function 'processtItem' that allows a farmer to mark an item 'Processed'
-  function processItem(uint _upc) harvested(upc) onlyFarmer public 
+  function processItem(uint _upc) harvested(upc) onlyFarmer verifyCaller(items[_upc].originFarmerID) public 
   // Call modifier to check if upc has passed previous supply chain stage
   
   // Call modifier to verify caller of this function
@@ -193,7 +193,7 @@ contract SupplyChain is Ownable, DistributorRole, ConsumerRole, RetailerRole, Fa
   }
 
   // Define a function 'packItem' that allows a farmer to mark an item 'Packed'
-  function packItem(uint _upc) processed(upc) onlyFarmer public 
+  function packItem(uint _upc) processed(upc) onlyFarmer verifyCaller(items[_upc].originFarmerID) public 
   // Call modifier to check if upc has passed previous supply chain stage
   
   // Call modifier to verify caller of this function
@@ -210,7 +210,7 @@ contract SupplyChain is Ownable, DistributorRole, ConsumerRole, RetailerRole, Fa
   }
 
   // Define a function 'sellItem' that allows a farmer to mark an item 'ForSale'
-  function sellItem(uint _upc, uint _price) packed(upc) onlyFarmer public 
+  function sellItem(uint _upc, uint _price) packed(upc) verifyCaller(items[_upc].originFarmerID) onlyFarmer public 
   // Call modifier to check if upc has passed previous supply chain stage
   
   // Call modifier to verify caller of this function
@@ -229,7 +229,7 @@ contract SupplyChain is Ownable, DistributorRole, ConsumerRole, RetailerRole, Fa
   // Define a function 'buyItem' that allows the disributor to mark an item 'Sold'
   // Use the above defined modifiers to check if the item is available for sale, if the buyer has paid enough, 
   // and any excess ether sent is refunded back to the buyer
-  function buyItem(uint _upc, address payable distributorID) forSale(upc) paidEnough(items[_upc].productPrice) checkValue(_upc) public payable 
+  function buyItem(uint _upc, address payable distributorID) onlyDistributor forSale(upc) paidEnough(items[_upc].productPrice) checkValue(_upc) public payable 
     // Call modifier to check if upc has passed previous supply chain stage
     
     // Call modifer to check if buyer has paid enough
@@ -253,7 +253,7 @@ contract SupplyChain is Ownable, DistributorRole, ConsumerRole, RetailerRole, Fa
 
   // Define a function 'shipItem' that allows the distributor to mark an item 'Shipped'
   // Use the above modifers to check if the item is sold
-  function shipItem(uint _upc) sold(upc) onlyDistributor public 
+  function shipItem(uint _upc) sold(upc) onlyDistributor verifyCaller(items[_upc].distributorID) public 
     // Call modifier to check if upc has passed previous supply chain stage
     
     // Call modifier to verify caller of this function
